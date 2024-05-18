@@ -1,0 +1,86 @@
+.video {
+    background-size: cover;
+    padding: 100px 200px 20px 200px;
+    position: relative;
+    height: auto;
+    width: 100%;
+    background-position: center;
+    overflow: hidden;
+}
+
+.video::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: inherit;
+    background-size: inherit;
+    background-position: inherit;
+    z-index: 1;
+}
+
+.video::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    background: linear-gradient(to bottom,
+            rgba(4, 21, 45, 0.8) 0%,
+            rgba(4, 21, 45, 0.8) 50%,
+            rgba(4, 21, 45, 1) 100%);
+}
+
+.video video{
+    position: relative;
+    z-index: 7;
+    border-radius: 10px;
+}
+
+.video video:focus{
+    outline: none;
+}
+
+.episodes{
+    background-color: #04152d;
+    padding: 10px 200px;
+}
+
+.episodes .info_item {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 10px;
+}
+
+.episodes .button_container {
+    display: flex;
+    justify-content: center;
+}
+
+.episodes button {
+    width: 100px;
+    height: 40px;
+    /* padding: 10px 25px; */
+    background: linear-gradient(98.37deg, #f89e00 .99%, #da2f68 100%);
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    line-height: 20px;
+    font-size: 13px;
+}
+
+.episodes button:hover {
+    background: linear-gradient(98.37deg, #359000 .99%, #f89e00 100%);
+}
+
+.episodes h5 {
+    font-family: "Inter", sans-serif;
+    text-transform: capitalize;
+    font-size: 25px;
+}

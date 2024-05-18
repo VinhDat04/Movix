@@ -1,0 +1,37 @@
+.navbar_container {
+    position: fixed;
+    z-index: 10;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, .25);
+    backdrop-filter: blur(3.5px);
+}
+
+.navbar {
+    padding: 13px 200px;
+    display: flex;
+}
+
+.navbar img {
+    transform: scale(1.2);
+}
+
+.navbar .bar {
+    margin:auto 0 auto auto;
+    align-items: center;
+}
+
+.navbar .bar ul {
+    justify-content: right;
+    display: flex;
+    gap: 40px;
+}
+
+.navbar .bar li {
+    list-style: none;
+}
+
+.navbar .bar a {
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+    color: #fff;
+}

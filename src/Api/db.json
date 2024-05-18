@@ -1,0 +1,140 @@
+{
+  "status": "success",
+  "msg": "",
+  "data": {
+    "seoOnPage": {
+      "og_type": "website",
+      "titleHead": "Phim đế chế mới | đế chế mới vietsub | Phim đế chế mới hay | Tuyển tập đế chế mới mới nhất 2024",
+      "descriptionHead": "Phim đế chế mới hay tuyển tập, phim đế chế mới mới nhất, tổng hợp phim đế chế mới, đế chế mới full HD, đế chế mới vietsub, xem đế chế mới online",
+      "og_image": [
+        "/upload/vod/20240402-1/9451c8ca38286b82764df85a9e51723c.jpg",
+        "/upload/vod/20231210-1/f5ad7383e775298e0af5e33809abb3ac.jpg"
+      ],
+      "og_url": "tim-kiem?keyword=đế chế mới"
+    },
+    "breadCrumb": [
+      {
+        "name": "Tìm kiếm phim: đế chế mới - Trang 1",
+        "isCurrent": true,
+        "position": 2
+      }
+    ],
+    "titlePage": "Tìm kiếm phim: đế chế mới",
+    "items": [
+      {
+        "modified": {
+          "time": "2024-05-17T13:40:26.000Z"
+        },
+        "_id": "ef96003dff3714cf3720aee9b14503b7",
+        "name": "Godzilla x Kong: Đế Chế Mới",
+        "slug": "godzilla-x-kong-de-che-moi",
+        "origin_name": "Godzilla x Kong: The New Empire",
+        "type": "single",
+        "poster_url": "upload/vod/20240402-1/9451c8ca38286b82764df85a9e51723c.jpg",
+        "thumb_url": "upload/vod/20240402-1/06f2da6c8aa8f4c23158d875a54c43a0.jpg",
+        "sub_docquyen": true,
+        "chieurap": true,
+        "time": "115 phút",
+        "episode_current": "Full",
+        "quality": "CAM",
+        "lang": "Vietsub",
+        "year": 2024,
+        "category": [
+          {
+            "id": "9822be111d2ccc29c7172c78b8af8ff5",
+            "name": "Hành Động",
+            "slug": "hanh-dong"
+          },
+          {
+            "id": "0bcf4077916678de9b48c89221fcf8ae",
+            "name": "Khoa Học",
+            "slug": "khoa-hoc"
+          },
+          {
+            "id": "68564911f00849030f9c9c144ea1b931",
+            "name": "Viễn Tưởng",
+            "slug": "vien-tuong"
+          },
+          {
+            "id": "66c78b23908113d478d8d85390a244b4",
+            "name": "Phiêu Lưu",
+            "slug": "phieu-luu"
+          }
+        ],
+        "country": [
+          {
+            "id": "74d9fa92f4dea9ecea8fc2233dc7921a",
+            "name": "Âu Mỹ",
+            "slug": "au-my"
+          }
+        ]
+      },
+      {
+        "modified": {
+          "time": "2023-12-25T00:18:32.000Z"
+        },
+        "_id": "1eaa260fddcc15e3c1f09453b8d5bd92",
+        "name": "Đế Chế Mới",
+        "slug": "de-che-moi",
+        "origin_name": "Captive State",
+        "type": "single",
+        "poster_url": "upload/vod/20231210-1/f5ad7383e775298e0af5e33809abb3ac.jpg",
+        "thumb_url": "upload/vod/20231210-1/1503fa7ad5dfb55bcee844f1a4061dda.jpg",
+        "sub_docquyen": false,
+        "chieurap": false,
+        "time": "N/A",
+        "episode_current": "Full",
+        "quality": "HD",
+        "lang": "Thuyết Minh",
+        "year": 2019,
+        "category": [
+          {
+            "id": "a7b065b92ad356387ef2e075dee66529",
+            "name": "Tâm Lý",
+            "slug": "tam-ly"
+          },
+          {
+            "id": "68564911f00849030f9c9c144ea1b931",
+            "name": "Viễn Tưởng",
+            "slug": "vien-tuong"
+          },
+          {
+            "id": "0bcf4077916678de9b48c89221fcf8ae",
+            "name": "Khoa Học",
+            "slug": "khoa-hoc"
+          }
+        ],
+        "country": [
+          {
+            "id": "74d9fa92f4dea9ecea8fc2233dc7921a",
+            "name": "Âu Mỹ",
+            "slug": "au-my"
+          }
+        ]
+      }
+    ],
+    "params": {
+      "type_slug": "tim-kiem",
+      "keyword": "đế chế mới",
+      "filterCategory": [
+        ""
+      ],
+      "filterCountry": [
+        ""
+      ],
+      "filterYear": "",
+      "filterType": "",
+      "sortField": "_id",
+      "sortType": "desc",
+      "pagination": {
+        "totalItems": 2,
+        "totalItemsPerPage": 2,
+        "currentPage": 1,
+        "totalPages": 1
+      }
+    },
+    "type_list": "",
+    "APP_DOMAIN_FRONTEND": "https://phimapi.com",
+    "APP_DOMAIN_CDN_IMAGE": "https://img.phimapi.com"
+  }
+}
