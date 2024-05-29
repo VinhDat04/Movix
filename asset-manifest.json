@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Movix/static/css/main.f755c978.css",
-    "main.js": "/Movix/static/js/main.c0f13d52.js",
+    "main.js": "/Movix/static/js/main.62c1a084.js",
     "static/js/453.6f2e229a.chunk.js": "/Movix/static/js/453.6f2e229a.chunk.js",
     "static/media/fa-solid-900.ttf": "/Movix/static/media/fa-solid-900.bacd5de623fb563b961a.ttf",
     "static/media/fa-brands-400.ttf": "/Movix/static/media/fa-brands-400.60127e352b7a11f7f1bc.ttf",
@@ -14,11 +14,11 @@
     "static/media/fa-v4compatibility.woff2": "/Movix/static/media/fa-v4compatibility.cf7f5903d06b79ad60f1.woff2",
     "index.html": "/Movix/index.html",
     "main.f755c978.css.map": "/Movix/static/css/main.f755c978.css.map",
-    "main.c0f13d52.js.map": "/Movix/static/js/main.c0f13d52.js.map",
+    "main.62c1a084.js.map": "/Movix/static/js/main.62c1a084.js.map",
     "453.6f2e229a.chunk.js.map": "/Movix/static/js/453.6f2e229a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f755c978.css",
-    "static/js/main.c0f13d52.js"
+    "static/js/main.62c1a084.js"
   ]
 }
