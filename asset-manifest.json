@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Movix/static/css/main.e825c065.css",
+    "main.css": "/Movix/static/css/main.2587b3ac.css",
     "main.js": "/Movix/static/js/main.a043d6df.js",
     "static/js/453.6f2e229a.chunk.js": "/Movix/static/js/453.6f2e229a.chunk.js",
     "static/media/fa-solid-900.ttf": "/Movix/static/media/fa-solid-900.bacd5de623fb563b961a.ttf",
@@ -13,12 +13,12 @@
     "static/media/fa-v4compatibility.ttf": "/Movix/static/media/fa-v4compatibility.c8e090db312b0bea2aa2.ttf",
     "static/media/fa-v4compatibility.woff2": "/Movix/static/media/fa-v4compatibility.cf7f5903d06b79ad60f1.woff2",
     "index.html": "/Movix/index.html",
-    "main.e825c065.css.map": "/Movix/static/css/main.e825c065.css.map",
+    "main.2587b3ac.css.map": "/Movix/static/css/main.2587b3ac.css.map",
     "main.a043d6df.js.map": "/Movix/static/js/main.a043d6df.js.map",
     "453.6f2e229a.chunk.js.map": "/Movix/static/js/453.6f2e229a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e825c065.css",
+    "static/css/main.2587b3ac.css",
     "static/js/main.a043d6df.js"
   ]
 }
