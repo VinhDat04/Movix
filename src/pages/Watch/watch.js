@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getDetailMovie } from '../../Api/api';
 import Loading from '../../components/Loading/loading';
 import Hls from 'hls.js';
-import './watch.css'
+import './watch.css';
 
 const DetailsMovie = () => {
     const { slug } = useParams();
@@ -11,16 +11,33 @@ const DetailsMovie = () => {
     const [episodes, setEpisodes] = useState([]);
     const videoRef = useRef(null);
     const [activeLink, setActiveLink] = useState('');
+    const [watchedEpisodes, setWatchedEpisodes] = useState(new Set(JSON.parse(localStorage.getItem('watchedEpisodes')) || []));
 
     const handleClick = (link) => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         setActiveLink(link);
+        setWatchedEpisodes((prevWatched) => {
+            const updatedWatched = new Set(prevWatched).add(link);
+            localStorage.setItem('watchedEpisodes', JSON.stringify([...updatedWatched]));
+            return updatedWatched;
+        });
+
         const video = videoRef.current;
-        if (Hls.isSupported()) {
-            const hls = new Hls();
-            hls.loadSource(link);
-            hls.attachMedia(video);
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = link;
+        if (video) {
+            console.log("Setting video source to:", link);
+            if (Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(link);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                    video.play();
+                });
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                video.src = link;
+                video.addEventListener('loadedmetadata', () => {
+                    video.play();
+                });
+            }
         }
     };
 
@@ -28,13 +45,10 @@ const DetailsMovie = () => {
         const fetchData = async () => {
             try {
                 const { details, episodes } = await getDetailMovie(slug);
+                console.log('Fetched details:', details);
+                console.log('Fetched episodes:', episodes);
                 setDetails(details);
                 setEpisodes(episodes);
-
-                // If no active link, set the first episode's link as the active link
-                if (episodes.length > 0 && episodes[0].server_data.length > 0) {
-                    handleClick(episodes[0].server_data[0].link_m3u8);
-                }
             } catch (error) {
                 console.error('Error fetching movie details:', error);
             }
@@ -42,6 +56,13 @@ const DetailsMovie = () => {
 
         fetchData();
     }, [slug]);
+
+    useEffect(() => {
+        if (episodes.length > 0 && episodes[0].server_data.length > 0) {
+            console.log('Auto-playing first episode:', episodes[0].server_data[0].link_m3u8);
+            handleClick(episodes[0].server_data[0].link_m3u8);
+        }
+    }, [episodes]);
 
     return (
         <div>
@@ -62,7 +83,13 @@ const DetailsMovie = () => {
                                     <div key={idx} className='button_container'>
                                         <button
                                             onClick={() => handleClick(item.link_m3u8)}
-                                            style={activeLink === item.link_m3u8 ? { background: "#359000" } : {}}
+                                            style={{
+                                                background: activeLink === item.link_m3u8
+                                                    ? "#359000"
+                                                    : watchedEpisodes.has(item.link_m3u8)
+                                                    ? "#444"
+                                                    : "linear-gradient(98.37deg, #f89e00 .99%, #da2f68 100%)"
+                                            }}
                                         >
                                             {item.name}
                                         </button>

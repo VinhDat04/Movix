@@ -1,36 +1,30 @@
 import axios from 'axios';
+import LRU from 'lru-cache';
 
 const BASE_URL = 'https://phimapi.com';
+const cache = new LRU({ max: 100, maxAge: 1000 * 60 * 5 });
 
 const movieApi = axios.create({
     baseURL: BASE_URL,
 });
 
-export const getAllMovie = async (pageNumber) => {
-    try {
-        const response = await movieApi.get('/danh-sach/phim-moi-cap-nhat', {
-            params: {
-                page: pageNumber,
-            }
-        });
-        return {
-            movies: response.data.items,
-            pagination: response.data.pagination,
-        };
-    } catch (error) {
-        throw error;
+// Helper function to get data with caching
+const fetchWithCache = async (url, params) => {
+    const cacheKey = `${url}-${JSON.stringify(params)}`;
+    if (cache.has(cacheKey)) {
+        return cache.get(cacheKey);
     }
+    const response = await movieApi.get(url, { params });
+    cache.set(cacheKey, response.data);
+    return response.data;
 };
 
-export const getPhimCapNhat = async () => {
+export const getPhimCapNhat = async (pageNumber) => {
     try {
-        const response = await movieApi.get('/danh-sach/phim-moi-cap-nhat', {
-            params: {
-                page: 1,
-            }
-        });
+        const data = await fetchWithCache('/danh-sach/phim-moi-cap-nhat', { page: pageNumber });
         return {
-            phimCapNhat: response.data.items,
+            phimCapNhat: data.items,
+            pagination: data.pagination,
         };
     } catch (error) {
         throw error;
@@ -39,89 +33,140 @@ export const getPhimCapNhat = async () => {
 
 export const getDetailMovie = async (slug) => {
     try {
-        const response = await movieApi.get(`/phim/${slug}`, {
-
-        });
+        const data = await fetchWithCache(`/phim/${slug}`, {});
         return {
-            details: response.data.movie,
-            // servername: response.data.episodes.server_name.server_name,
-            // serverdata: response.data.episodes.server_data,
-            category: response.data.movie.category,
-            country: response.data.movie.country,
-            episodes: response.data.episodes,
+            details: data.movie,
+            category: data.movie.category,
+            country: data.movie.country,
+            episodes: data.episodes,
         };
     } catch (error) {
         throw error;
     }
 };
 
-
-export const getPhimLe = async () => {
+export const getPhimLe = async (pageNumber) => {
     try {
-        const response = await movieApi.get('/v1/api/danh-sach/phim-le', {
-        });
+        const data = await fetchWithCache('/v1/api/danh-sach/phim-le', { page: pageNumber });
         return {
-            phimLe: response.data.data.items,
-            titlePL: response.data.data,
-        }
+            phimLe: data.data.items,
+            titlePL: data.data,
+            pagination: data.data.params.pagination,
+        };
     } catch (error) {
         throw error;
     }
 };
 
-export const getPhimBo = async () => {
+export const getPhimBo = async (pageNumber) => {
     try {
-        const response = await movieApi.get('/v1/api/danh-sach/phim-bo', {
-        });
+        const data = await fetchWithCache('/v1/api/danh-sach/phim-bo', { page: pageNumber });
         return {
-            phimBo: response.data.data.items,
-            titlePB: response.data.data,
-        }
+            phimBo: data.data.items,
+            titlePB: data.data,
+            pagination: data.data.params.pagination,
+        };
     } catch (error) {
         throw error;
     }
 };
 
-export const getTvShow = async () => {
+export const getTvShow = async (pageNumber) => {
     try {
-        const response = await movieApi.get('/v1/api/danh-sach/tv-shows', {
-        });
+        const data = await fetchWithCache('/v1/api/danh-sach/tv-shows', { page: pageNumber });
         return {
-            tvShow: response.data.data.items,
-            titleTv: response.data.data,
-        }
+            tvShow: data.data.items,
+            titleTv: data.data,
+            pagination: data.data.params.pagination,
+        };
     } catch (error) {
         throw error;
     }
 };
 
-export const getHoatHinh = async () => {
+export const getHoatHinh = async (pageNumber) => {
     try {
-        const response = await movieApi.get('/v1/api/danh-sach/hoat-hinh', {
-        });
+        const data = await fetchWithCache('/v1/api/danh-sach/hoat-hinh', { page: pageNumber });
         return {
-            hoatHinh: response.data.data.items,
-            titleHH: response.data.data,
-        }
+            hoatHinh: data.data.items,
+            titleHH: data.data,
+            pagination: data.data.params.pagination,
+        };
     } catch (error) {
         throw error;
     }
 };
 
-export const getSearch = async (keyword) => {
-    try {
-        // Chuyển đổi keyword thành chuỗi
-        const response = await movieApi.get('/v1/api/tim-kiem', {
-            params: {
-                keyword: keyword
+// Debounced search function
+let searchTimeout;
+export const getSearch = (keyword) => {
+    clearTimeout(searchTimeout);
+    return new Promise((resolve, reject) => {
+        searchTimeout = setTimeout(async () => {
+            try {
+                const data = await fetchWithCache('/v1/api/tim-kiem', { keyword, limit: 100 });
+                resolve({
+                    timkiem: data.data.items,
+                    titlePage: data.data.titlePage,
+                });
+            } catch (error) {
+                reject(error);
             }
-        });
+        }, 300); // Debounce delay of 300ms
+    });
+};
+
+export const getSimilarMovie = async () => {
+    try {
+        const data = await fetchWithCache('/v1/api/tim-kiem', { keyword: "a", limit: 20000 });
         return {
-            timkiem: response.data.data.items,
+            similar: data.data.items,
         };
     } catch (error) {
         throw error;
     }
 };
 
+export const getGenres = async () => {
+    try {
+        const data = await fetchWithCache('/the-loai');
+        return {
+            genres: data,
+        };
+    } catch (error) {
+        throw error;
+    }
+};
 
+export const getGenresMovie = async () => {
+    try {
+        const data = await fetchWithCache('/v1/api/tim-kiem', { keyword: "a", limit: 20000 });
+        return {
+            genresMovie: data.data.items,
+        };
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const getCountry = async () => {
+    try {
+        const data = await fetchWithCache('/quoc-gia');
+        return {
+            country: data,
+        };
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const getFilterMovie = async () => {
+    try {
+        const data = await fetchWithCache('/v1/api/tim-kiem', { keyword: "a", limit: 20000 });
+        return {
+            filterMovie: data.data.items,
+        };
+    } catch (error) {
+        throw error;
+    }
+};

@@ -7,7 +7,13 @@
       "default",
       {
         "ignore": [
-          "position: sticky"
+          "position: sticky",
+          "display: grid",
+          "backdrop-filter",
+          "grid-template-columns",
+          "grid-template-columns: repeat(4, 1fr)",
+          "grid-template-columns: repeat(5, 1fr) !impotant",
+          "grid-template-columns: repeat(3, 1fr)"
         ]
       }
     ]

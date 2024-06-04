@@ -1,35 +1,46 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { getSearch } from '../../Api/api';
-import './search.css';
+import { Link } from 'react-router-dom';
+import { getFilterMovie } from '../../Api/api';
 import Loading from '../../components/Loading/loading';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import ReactPaginate from 'react-paginate';
 import Filterform from '../../components/FilterForm/filterform';
 
-const Search = () => {
-    const { keyword } = useParams();
-    console.log("Keyword", keyword);
-    const [timkiem, setTimKiem] = useState(null);
-    const [titlePage, setTitlePage] = useState(null);
+
+const FilterMovie = () => {
+    const [filterMovie, setFilterMovie] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage] = useState(15);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { timkiem, titlePage } = await getSearch(keyword);
-                setTimKiem(timkiem);
-                setTitlePage(titlePage);
-                console.log("sssssssssss", titlePage);
-                console.log("Kết quả tìm kiếm:", timkiem);
+                const { filterMovie } = await getFilterMovie();
+                setFilterMovie(filterMovie);
+
             } catch (error) {
                 console.error('Error fetching movie details:', error);
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchData();
-    }, [keyword]);
+    }, []);
+
+    const genresFilter = localStorage.getItem("genresFilter");
+    const countryFilter = localStorage.getItem("countryFilter");
+    const yearFilter = localStorage.getItem("yearFilter");
+    const typeFilter = localStorage.getItem("typeFilter");
+
+
+    const filteredMovies = filterMovie.filter(movie =>
+        (genresFilter ? movie.category.some(item => item.slug === genresFilter) : true) &&
+        (countryFilter ? movie.country.some(item => item.slug === countryFilter) : true) &&
+        (yearFilter ? movie.year.toString() === yearFilter : true) &&
+        (typeFilter ? movie.type.toString() === typeFilter : true)
+    );
 
     const handlePageClick = (data) => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -37,32 +48,29 @@ const Search = () => {
     };
 
     const offset = currentPage * itemsPerPage;
-    const currentPageData = timkiem ? timkiem.slice(offset, offset + itemsPerPage) : [];
+    const currentPageData = filteredMovies ? filteredMovies.slice(offset, offset + itemsPerPage) : [];
 
     return (
         <div>
-            {timkiem ? (
-                timkiem.length > 0 ? (
-                    <div className="film_component">
-                        <Filterform />
-                        {timkiem.length > 0 && (
-                            <div>
-                                <div className='category'>{titlePage} | <span style={{ color: "rgb(139 92 246)" }}>{timkiem.length} Kết quả </span></div>
-                            </div>
-                        )}
-                        <div className='list'>
-                            {currentPageData.map(movie => (
+            {loading ? (
+                <Loading />
+            ) : (
+                filteredMovies.length > 0 ? (
+                    <div className='film_component'>
+                        <Filterform></Filterform>
+                        <div className='category'>
+                            kết quả đã lọc: <span style={{ color: "rgb(139 92 246)" }}>{filteredMovies.length} Kết quả</span>
+                        </div>
+                        <div className="list">
+
+                            {currentPageData.map((movie) => (
                                 <div key={movie.id} className="movie">
                                     <Link to={`/movie/detailsmovie/${movie.slug}`}>
-                                        {movie.poster_url ? (
-                                            <LazyLoadImage
-                                                src={`https://img.phimapi.com/${movie.poster_url}`}
-                                                alt={movie.title}
-                                                placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
-                                            />
-                                        ) : (
-                                            <img src='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg' alt='placeholder' />
-                                        )}
+                                        <LazyLoadImage
+                                            src={`https://img.phimapi.com/${movie.poster_url}`}
+                                            alt={movie.title}
+                                            placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
+                                        />
                                     </Link>
                                     <div className='year'>
                                         <p>{movie.year}</p>
@@ -72,12 +80,13 @@ const Search = () => {
                                     </div>
                                 </div>
                             ))}
+
                         </div>
                         <div className='pagination'>
                             <ReactPaginate
                                 previousLabel={<i className="fa-sharp fa-solid fa-arrow-left"></i>}
                                 nextLabel={<i className="fa-sharp fa-solid fa-arrow-right"></i>}
-                                pageCount={Math.ceil(timkiem.length / itemsPerPage)}
+                                pageCount={Math.ceil(filteredMovies.length / itemsPerPage)}
                                 marginPagesDisplayed={0}
                                 pageRangeDisplayed={5}
                                 breakLabel={""}
@@ -87,7 +96,7 @@ const Search = () => {
                                 activeClassName={"active"}
                             />
                             <div className='result'>
-                                <p>Trang {currentPage + 1}/{Math.ceil(timkiem.length / itemsPerPage)} | Tổng {timkiem.length} Kết quả</p>
+                                <p>Trang {currentPage + 1}/{Math.ceil(filteredMovies.length / itemsPerPage)} | Tổng {filteredMovies.length} Kết quả</p>
                             </div>
                         </div>
                     </div>
@@ -98,12 +107,10 @@ const Search = () => {
                             <Link to={"/Movix"}>Về Trang Chủ</Link>
                         </button>
                     </div>
-                )
-            ) : (
-                <Loading />
-            )}
+                ))
+            }
         </div>
     );
 };
 
-export default Search;
+export default FilterMovie;

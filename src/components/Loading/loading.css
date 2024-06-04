@@ -3,13 +3,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Full viewport height */
+  height: 100vh; 
   background-color: #04152d;
-  position: fixed; /* Use fixed position to cover the entire screen */
-  top: 0; /* Start from the top */
-  left: 0; /* Start from the left */
-  width: 100%; /* Full width */
-  overflow: hidden; /* Prevent scrolling */
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%; 
+  overflow: hidden;
   z-index: 20;
 }
 

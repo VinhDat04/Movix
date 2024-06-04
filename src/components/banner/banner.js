@@ -2,25 +2,34 @@
 import React, { useEffect, useState } from 'react';
 import './banner.css';
 import { getPhimCapNhat } from '../../Api/api';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Banner = () => {
     const [phimCapNhat, setPhimCapNhat] = useState([]);
     const [slideIndex, setSlideIndex] = useState(0);
     const [keyword, setKeyword] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Redirect to search page with the keyword
-        // window.location.href = `${keyword}`;
+        navigate(`/movie/search/keyword/${keyword}`);
     }
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+
+                const phimCapNhatLS = localStorage.getItem('phimCapNhat');
+
+                if (phimCapNhatLS) {
+                    setPhimCapNhat(JSON.parse(phimCapNhatLS));
+                }
                 const { phimCapNhat } = await getPhimCapNhat();
                 setPhimCapNhat(phimCapNhat);
                 console.log("phimCapNhat:", phimCapNhat);
+
+
+                localStorage.setItem('phimCapNhat', JSON.stringify(phimCapNhat));
             } catch (error) {
                 console.error('Error fetching movies:', error);
             }
@@ -31,7 +40,7 @@ const Banner = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setSlideIndex(prevIndex => (prevIndex + 1) % phimCapNhat.length);
-        }, 60000);
+        }, 30000);
 
         return () => clearInterval(interval);
     }, [phimCapNhat]);
@@ -45,31 +54,21 @@ const Banner = () => {
                             className={`mySlides fade ${index === slideIndex ? 'active' : ''}`}
                             key={item.id || index} // Use a unique key
                         >
-                            <img src={`${item.thumb_url}`} alt={`Slide ${index + 1}`} style={{ width: '100%', height: '100%' }} />
+                            <img src={`${item.thumb_url}`} style={{ width: '100%', height: '100%' }} />
                             <div className="text">
                                 <h1>welcome .</h1>
                                 <p>Millions of movies, TV shows and people to discover. Explore now.</p>
                             </div>
                             <form onSubmit={handleSubmit}>
                                 <div className='search'>
-                                    <input required value={keyword} onChange={(e) => setKeyword(e.target.value)} placeholder='Search for a movie or TV show....' />
-                                    <Link to={`/movie/search/keyword/${keyword}`}><button type='submit'>Search</button></Link>
+                                    <input required value={keyword} onChange={(e) => setKeyword(e.target.value)} placeholder='Tìm kiếm phim hoặc tv show...' />
+                                    <button type='submit'>Tìm Kiếm</button>
                                 </div>
                             </form>
                         </div>
                     ))
                 ) : (
-                    <div className={`mySlides`}>
-                        <img src={`./v5XyXZe8FADw8iHupB4L7QOAwH9.jpg`} style={{ width: '100%', height: '100%' }} />
-                        <div className="text">
-                            <h1>welcome .</h1>
-                            <p>Millions of movies, TV shows and people to discover. Explore now.</p>
-                        </div>
-                        <div className='search'>
-                            <input placeholder='Search for a movie or TV show....'></input>
-                            <Link to={`/movie/search/search?keyword=${keyword}`}></Link>
-                        </div>
-                    </div>
+                    <></>
                 )
             }
         </div>
