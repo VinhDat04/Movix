@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Movix/static/css/main.ec8c8282.css",
-    "main.js": "/Movix/static/js/main.4da418c1.js",
+    "main.css": "/Movix/static/css/main.baf2337a.css",
+    "main.js": "/Movix/static/js/main.ea06c266.js",
     "static/js/453.6f2e229a.chunk.js": "/Movix/static/js/453.6f2e229a.chunk.js",
     "static/media/fa-solid-900.ttf": "/Movix/static/media/fa-solid-900.bacd5de623fb563b961a.ttf",
     "static/media/fa-brands-400.ttf": "/Movix/static/media/fa-brands-400.60127e352b7a11f7f1bc.ttf",
@@ -13,12 +13,12 @@
     "static/media/fa-v4compatibility.ttf": "/Movix/static/media/fa-v4compatibility.c8e090db312b0bea2aa2.ttf",
     "static/media/fa-v4compatibility.woff2": "/Movix/static/media/fa-v4compatibility.cf7f5903d06b79ad60f1.woff2",
     "index.html": "/Movix/index.html",
-    "main.ec8c8282.css.map": "/Movix/static/css/main.ec8c8282.css.map",
-    "main.4da418c1.js.map": "/Movix/static/js/main.4da418c1.js.map",
+    "main.baf2337a.css.map": "/Movix/static/css/main.baf2337a.css.map",
+    "main.ea06c266.js.map": "/Movix/static/js/main.ea06c266.js.map",
     "453.6f2e229a.chunk.js.map": "/Movix/static/js/453.6f2e229a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ec8c8282.css",
-    "static/js/main.4da418c1.js"
+    "static/css/main.baf2337a.css",
+    "static/js/main.ea06c266.js"
   ]
 }
