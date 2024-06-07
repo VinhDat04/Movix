@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import Loading from '../../components/Loading/loading'
 import { getPhimLe } from '../../Api/api';
 import Filterform from '../../components/FilterForm/filterform';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const SeriesMovie = () => {
     const [phimle, setPhimLe] = useState(null);
