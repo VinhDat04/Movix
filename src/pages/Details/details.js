@@ -90,7 +90,7 @@ const DetailsMovie = () => {
                             <div className='content_item1'>
                                 <h5>{details.name}</h5>
                                 <p>{details.origin_name}</p>
-                                <div>
+                                <div className='cate'>
                                     {category && category.map(item => (
                                         <span key={item.id}>{item.name}</span>
                                     ))}

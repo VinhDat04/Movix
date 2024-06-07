@@ -77,13 +77,22 @@ body {
 
 .content_item1 span {
     font-family: "Inter", sans-serif;
-    padding: 1px 5px;
+    padding: 3px 5px !important;
     font-size: 12px;
     background-color: #da2f68;
     color: #fff;
     margin: 0 5px 0 0;
     border-radius: 5px;
+    /* display: inline; */
+
 }
+
+.cate{
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 5px;
+}
+
 
 .content_item1 iframe {
     margin: 10px 0;
