@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Loading from '../../components/Loading/loading'
 import { getPhimLe } from '../../Api/api';
 import Filterform from '../../components/FilterForm/filterform';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const SeriesMovie = () => {
     const [phimle, setPhimLe] = useState(null);
@@ -13,7 +14,7 @@ const SeriesMovie = () => {
 
     const handleClick = async (pageNumber) => {
         try {
-            window.scrollTo({ top: 0 , behavior: 'smooth' });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             const phimleLS = localStorage.getItem('phimle');
             const paginationLS = localStorage.getItem('pagination');
             if (phimleLS && paginationLS) {
@@ -42,19 +43,29 @@ const SeriesMovie = () => {
         <div>
             {phimle ? (
                 <div className='film_component'>
-                <Filterform />
-                    <div className='category'>Phim Lẻ</div>
+                    <Filterform />
+                    <div className='category' style={{ color: "#f89e00"}}>#Phim Lẻ</div>
                     <div className="list">
                         {phimle && phimle.map(movie => (
                             <div key={movie.id} className="movie">
-                                <Link to={`/movie/detailsmovie/${movie.slug}`} ><img src={`https://img.phimapi.com/${movie.poster_url}`} alt={movie.title} /></Link>
+                                <Link to={`/movie/detailsmovie/${movie.slug}`}>
+                                    <div className="image-container">
+                                        <img
+                                            src={`https://img.phimapi.com/${movie.poster_url}`}
+                                            alt={movie.title}
+                                            placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
+                                        />
+                                        <div className="image-overlay">
+                                            <p>{movie.name}</p>
+                                        </div>
+                                    </div>
+                                </Link>
                                 <div className='year'>
                                     <p>{movie.year}</p>
                                 </div>
                                 <div className='title'>
-                                    <Link to={`/movie/detailsmovie/${movie.slug}`} >{movie.name}</Link>
+                                    <Link to={`/movie/detailsmovie/${movie.slug}`}>{movie.name}</Link>
                                 </div>
-
                             </div>
                         ))}
                     </div>

@@ -12,7 +12,7 @@ const SeriesMovie = () => {
     const handleClick = async (pageNumber) => {
 
         try {
-            window.scrollTo({ top: 0 , behavior: 'smooth' });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             const phimhhLS = localStorage.getItem('phimhh');
             const paginationLS = localStorage.getItem('pagination');
 
@@ -25,8 +25,8 @@ const SeriesMovie = () => {
             setPhimHH(hoatHinh);
             setPagination(pagination);
 
-            localStorage.setItem('phimhh',JSON.stringify(hoatHinh));
-            localStorage.setItem('pagination',JSON.stringify(pagination));
+            localStorage.setItem('phimhh', JSON.stringify(hoatHinh));
+            localStorage.setItem('pagination', JSON.stringify(pagination));
 
             console.log("PhimHH:", hoatHinh);
             console.log("Pagination:", pagination);
@@ -43,19 +43,29 @@ const SeriesMovie = () => {
         <div>
             {phimhh ? (
                 <div className='film_component'>
-                <Filterform />
-                    <div className='category'>Phim Hoạt Hình</div>
+                    <Filterform />
+                    <div className='category' style={{ color: "#f89e00"}}>#Phim Hoạt Hình</div>
                     <div className="list">
                         {phimhh && phimhh.map(movie => (
                             <div key={movie.id} className="movie">
-                            <Link to={`/movie/detailsmovie/${movie.slug}`} ><img src={`https://img.phimapi.com/${movie.poster_url}`} alt={movie.title} /></Link>
+                                <Link to={`/movie/detailsmovie/${movie.slug}`}>
+                                    <div className="image-container">
+                                        <img
+                                            src={`https://img.phimapi.com/${movie.poster_url}`}
+                                            alt={movie.title}
+                                            placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
+                                        />
+                                        <div className="image-overlay">
+                                            <p>{movie.name}</p>
+                                        </div>
+                                    </div>
+                                </Link>
                                 <div className='year'>
                                     <p>{movie.year}</p>
                                 </div>
                                 <div className='title'>
-                                    <Link to={`/movie/detailsmovie/${movie.slug}`} >{movie.name}</Link>
+                                    <Link to={`/movie/detailsmovie/${movie.slug}`}>{movie.name}</Link>
                                 </div>
-
                             </div>
                         ))}
                     </div>

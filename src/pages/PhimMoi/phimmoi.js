@@ -42,25 +42,29 @@ const SeriesMovie = () => {
         <div>
             {phimCapNhat ? (
                 <div className='film_component'>
-                <FilterForm></FilterForm>
-                    <div className='category'>Phim Mới Cập Nhật</div>
+                    <FilterForm></FilterForm>
+                    <div className='category' style={{ color: "#f89e00"}}>#Phim mới cập nhật</div>
                     <div className="list">
                         {phimCapNhat && phimCapNhat.map(movie => (
                             <div key={movie.id} className="movie">
-                                <Link to={`/movie/detailsmovie/${movie.slug}`} >
-                                    <LazyLoadImage
-                                        src={`${movie.poster_url}`}
-                                        alt={movie.title}
-                                        placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
-                                    />
+                                <Link to={`/movie/detailsmovie/${movie.slug}`}>
+                                    <div className="image-container">
+                                        <LazyLoadImage
+                                            src={`${movie.poster_url}`}
+                                            alt={movie.title}
+                                            placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
+                                        />
+                                        <div className="image-overlay">
+                                            <p>{movie.name}</p>
+                                        </div>
+                                    </div>
                                 </Link>
                                 <div className='year'>
                                     <p>{movie.year}</p>
                                 </div>
                                 <div className='title'>
-                                    <Link to={`/movie/detailsmovie/${movie.slug}`} >{movie.name}</Link>
+                                    <Link to={`/movie/detailsmovie/${movie.slug}`}>{movie.name}</Link>
                                 </div>
-
                             </div>
                         ))}
                     </div>

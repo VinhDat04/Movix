@@ -153,6 +153,36 @@
     background-color: rgb(139 92 246);
 }
 
+.image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 100;
+    line-height: 20px;
+    border-radius: 15px;
+}
+
+.image-container:hover .image-overlay {
+    opacity: 1;
+}
+
+
 
 @media (max-width: 1440px) and (min-width: 1025px) {
     .not_found p {
@@ -185,6 +215,10 @@
     .category {
         font-size: 18px !important;
     }
+
+    .image-overlay {
+        display: none;
+    }
 }
 
 @media (max-width: 320px) {
@@ -199,5 +233,9 @@
 
     .category {
         font-size: 16px !important;
+    }
+
+    .image-overlay {
+        display: none;
     }
 }

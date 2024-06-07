@@ -115,17 +115,25 @@ const DetailsMovie = () => {
 
                                     if (SimilarType && SimilarCategory.length > 0 && SimilarName) {
                                         return (
-                                            <div key={movie._id} className="movie">
+                                            <div key={movie.id} className="movie">
                                                 <Link to={`/movie/detailsmovie/${movie.slug}`}>
-                                                    <img src={`https://img.phimapi.com/${movie.poster_url}`} alt={movie.name} />
+                                                    <div className="image-container">
+                                                        <img
+                                                            src={`https://img.phimapi.com/${movie.poster_url}`}
+                                                            alt={movie.title}
+                                                            placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
+                                                        />
+                                                        <div className="image-overlay">
+                                                            <p>{movie.name}</p>
+                                                        </div>
+                                                    </div>
                                                 </Link>
-                                                <div className="year">
-                                                    <p>{movie.year}</p> parky
+                                                <div className='year'>
+                                                    <p>{movie.year}</p>
                                                 </div>
-                                                <div className="title">
+                                                <div className='title'>
                                                     <Link to={`/movie/detailsmovie/${movie.slug}`}>{movie.name}</Link>
                                                 </div>
-                                                <div className="categories"></div>
                                             </div>
                                         );
                                     }
@@ -144,7 +152,16 @@ const DetailsMovie = () => {
                             {phimCapNhat && phimCapNhat.map(movie => (
                                 <div key={movie.id} className="movie">
                                     <Link to={`/movie/detailsmovie/${movie.slug}`}>
-                                        <img src={`${movie.poster_url}`} alt={movie.title} />
+                                        <div className="image-container">
+                                            <img
+                                                src={`${movie.poster_url}`}
+                                                alt={movie.title}
+                                                placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
+                                            />
+                                            <div className="image-overlay">
+                                                <p>{movie.name}</p>
+                                            </div>
+                                        </div>
                                     </Link>
                                     <div className='year'>
                                         <p>{movie.year}</p>
@@ -155,7 +172,7 @@ const DetailsMovie = () => {
                                 </div>
                             ))}
                             <div className='view_more'>
-                                <Link to={"/movie/phim_moi_cap_nhat"}><button>View More</button></Link>
+                                <Link to={"/movie/phim_moi_cap_nhat"}><button>Xem thêm</button></Link>
                             </div>
                         </Slider>
                     </div>

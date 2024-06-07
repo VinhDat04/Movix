@@ -121,16 +121,27 @@ const ShowHomePage = () => {
                 <>
                     <Banner />
                     <div className="show_series">
-                        <div className='category'><Link to={"/movie/phim_moi_cap_nhat"} style={{ color: "#fff", textDecoration: "none" }}>Phim mới cập nhật</Link></div>
+                        <div className='category'><Link to={"/movie/phim_moi_cap_nhat"} style={{ color: "#f89e00", textDecoration: "none" }}>#Phim mới cập nhật</Link></div>
                         <Slider {...settings}>
                             {phimCapNhat.map(movie => (
                                 <div key={movie.id} className="movie">
-                                    <Link to={`/movie/detailsmovie/${movie.slug}`}><img src={`${movie.poster_url}`} alt={movie.title} /></Link>
+                                    <Link to={`/movie/detailsmovie/${movie.slug}`}>
+                                        <div className="image-container">
+                                            <img
+                                                src={`${movie.poster_url}`}
+                                                alt={movie.title}
+                                                placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
+                                            />
+                                            <div className="image-overlay">
+                                                <p>{movie.name}</p>
+                                            </div>
+                                        </div>
+                                    </Link>
                                     <div className='year'>
                                         <p>{movie.year}</p>
                                     </div>
                                     <div className='title'>
-                                        <Link to={`/movie/detailsmovie/${movie.slug}`} >{movie.name}</Link>
+                                        <Link to={`/movie/detailsmovie/${movie.slug}`}>{movie.name}</Link>
                                     </div>
                                 </div>
                             ))}
@@ -140,16 +151,27 @@ const ShowHomePage = () => {
                         </Slider>
                     </div>
                     <div className="show_series">
-                        <div className='category'><Link to={"/movie/phim_bo"} style={{ color: "#fff", textDecoration: "none" }}>{titlePB.titlePage}</Link></div>
+                        <div className='category'><Link to={"/movie/phim_bo"} style={{ color: "#f89e00", textDecoration: "none" }}>#{titlePB.titlePage}</Link></div>
                         <Slider {...settings}>
                             {phimBo.map(movie => (
                                 <div key={movie.id} className="movie">
-                                    <Link to={`/movie/detailsmovie/${movie.slug}`}><img src={`https://img.phimapi.com/${movie.poster_url}`} alt={movie.title} /></Link>
+                                    <Link to={`/movie/detailsmovie/${movie.slug}`}>
+                                        <div className="image-container">
+                                            <img
+                                                src={`https://img.phimapi.com/${movie.poster_url}`}
+                                                alt={movie.title}
+                                                placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
+                                            />
+                                            <div className="image-overlay">
+                                                <p>{movie.name}</p>
+                                            </div>
+                                        </div>
+                                    </Link>
                                     <div className='year'>
                                         <p>{movie.year}</p>
                                     </div>
                                     <div className='title'>
-                                        <Link to={`/movie/detailsmovie/${movie.slug}`} >{movie.name}</Link>
+                                        <Link to={`/movie/detailsmovie/${movie.slug}`}>{movie.name}</Link>
                                     </div>
                                 </div>
                             ))}
@@ -159,16 +181,27 @@ const ShowHomePage = () => {
                         </Slider>
                     </div>
                     <div className="show_series">
-                        <div className='category'><Link to={"/movie/phim_le"} style={{ color: "#fff", textDecoration: "none" }}>{titlePL.titlePage}</Link></div>
+                        <div className='category'><Link to={"/movie/phim_le"} style={{ color: "#f89e00", textDecoration: "none" }}>#{titlePL.titlePage}</Link></div>
                         <Slider {...settings}>
                             {phimLe.map(movie => (
                                 <div key={movie.id} className="movie">
-                                    <Link to={`/movie/detailsmovie/${movie.slug}`}><img src={`https://img.phimapi.com/${movie.poster_url}`} alt={movie.title} /></Link>
+                                    <Link to={`/movie/detailsmovie/${movie.slug}`}>
+                                        <div className="image-container">
+                                            <img
+                                                src={`https://img.phimapi.com/${movie.poster_url}`}
+                                                alt={movie.title}
+                                                placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
+                                            />
+                                            <div className="image-overlay">
+                                                <p>{movie.name}</p>
+                                            </div>
+                                        </div>
+                                    </Link>
                                     <div className='year'>
                                         <p>{movie.year}</p>
                                     </div>
                                     <div className='title'>
-                                        <Link to={`/movie/detailsmovie/${movie.slug}`} >{movie.name}</Link>
+                                        <Link to={`/movie/detailsmovie/${movie.slug}`}>{movie.name}</Link>
                                     </div>
                                 </div>
                             ))}
@@ -178,16 +211,27 @@ const ShowHomePage = () => {
                         </Slider>
                     </div>
                     <div className="show_series">
-                        <div className='category'><Link to={"/movie/tvshow"} style={{ color: "#fff", textDecoration: "none" }}>{titleTv.titlePage}</Link></div>
+                        <div className='category'><Link to={"/movie/tvshow"} style={{ color: "#f89e00", textDecoration: "none" }}>#{titleTv.titlePage}</Link></div>
                         <Slider {...settings}>
                             {tvShow.map(movie => (
                                 <div key={movie.id} className="movie">
-                                    <Link to={`/movie/detailsmovie/${movie.slug}`}><img src={`https://img.phimapi.com/${movie.poster_url}`} alt={movie.title} /></Link>
+                                    <Link to={`/movie/detailsmovie/${movie.slug}`}>
+                                        <div className="image-container">
+                                            <img
+                                                src={`https://img.phimapi.com/${movie.poster_url}`}
+                                                alt={movie.title}
+                                                placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
+                                            />
+                                            <div className="image-overlay">
+                                                <p>{movie.name}</p>
+                                            </div>
+                                        </div>
+                                    </Link>
                                     <div className='year'>
                                         <p>{movie.year}</p>
                                     </div>
                                     <div className='title'>
-                                        <Link to={`/movie/detailsmovie/${movie.slug}`} >{movie.name}</Link>
+                                        <Link to={`/movie/detailsmovie/${movie.slug}`}>{movie.name}</Link>
                                     </div>
                                 </div>
                             ))}
@@ -197,16 +241,27 @@ const ShowHomePage = () => {
                         </Slider>
                     </div>
                     <div className="show_series">
-                        <div className='category'><Link to={"/movie/phim_hoat_hinh"} style={{ color: "#fff", textDecoration: "none" }}>{titleHH.titlePage}</Link></div>
+                        <div className='category'><Link to={"/movie/phim_hoat_hinh"} style={{ color: "#f89e00", textDecoration: "none" }}>#{titleHH.titlePage}</Link></div>
                         <Slider {...settings}>
                             {hoatHinh.map(movie => (
                                 <div key={movie.id} className="movie">
-                                    <Link to={`/movie/detailsmovie/${movie.slug}`}><img src={`https://img.phimapi.com/${movie.poster_url}`} alt={movie.title} placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg' /></Link>
+                                    <Link to={`/movie/detailsmovie/${movie.slug}`}>
+                                        <div className="image-container">
+                                            <img
+                                                src={`https://img.phimapi.com/${movie.poster_url}`}
+                                                alt={movie.title}
+                                                placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
+                                            />
+                                            <div className="image-overlay">
+                                                <p>{movie.name}</p>
+                                            </div>
+                                        </div>
+                                    </Link>
                                     <div className='year'>
                                         <p>{movie.year}</p>
                                     </div>
                                     <div className='title'>
-                                        <Link to={`/movie/detailsmovie/${movie.slug}`} >{movie.name}</Link>
+                                        <Link to={`/movie/detailsmovie/${movie.slug}`}>{movie.name}</Link>
                                     </div>
                                 </div>
                             ))}

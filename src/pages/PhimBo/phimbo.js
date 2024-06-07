@@ -45,18 +45,28 @@ const SeriesMovie = () => {
             {phimBo ? (
                 <div className='film_component'>
                     <Filterform />
-                    <div className='category'>Phim Bộ</div>
+                    <div className='category' style={{ color: "#f89e00"}}>#Phim Bộ</div>
                     <div className="list">
                         {phimBo && phimBo.map(movie => (
                             <div key={movie.id} className="movie">
-                                <Link to={`/movie/detailsmovie/${movie.slug}`} ><img src={`https://img.phimapi.com/${movie.poster_url}`} alt={movie.title} /></Link>
+                                <Link to={`/movie/detailsmovie/${movie.slug}`}>
+                                    <div className="image-container">
+                                        <img
+                                            src={`https://img.phimapi.com/${movie.poster_url}`}
+                                            alt={movie.title}
+                                            placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
+                                        />
+                                        <div className="image-overlay">
+                                            <p>{movie.name}</p>
+                                        </div>
+                                    </div>
+                                </Link>
                                 <div className='year'>
                                     <p>{movie.year}</p>
                                 </div>
                                 <div className='title'>
-                                    <Link to={`/movie/detailsmovie/${movie.slug}`} >{movie.name}</Link>
+                                    <Link to={`/movie/detailsmovie/${movie.slug}`}>{movie.name}</Link>
                                 </div>
-
                             </div>
                         ))}
                     </div>

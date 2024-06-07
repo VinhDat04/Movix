@@ -46,23 +46,24 @@ const Search = () => {
                     <div className="film_component">
                         <Filterform />
                         {timkiem.length > 0 && (
-                            <div>
-                                <div className='category'>{titlePage} | <span style={{ color: "rgb(139 92 246)" }}>{timkiem.length} Kết quả </span></div>
+                            <div >
+                                <div className='category' style={{ color: "#f89e00"}}>#{titlePage} | <span style={{ color: "rgb(139 92 246)" }}>{timkiem.length} Kết quả </span></div>
                             </div>
                         )}
                         <div className='list'>
                             {currentPageData.map(movie => (
                                 <div key={movie.id} className="movie">
                                     <Link to={`/movie/detailsmovie/${movie.slug}`}>
-                                        {movie.poster_url ? (
+                                        <div className="image-container">
                                             <LazyLoadImage
                                                 src={`https://img.phimapi.com/${movie.poster_url}`}
                                                 alt={movie.title}
                                                 placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
                                             />
-                                        ) : (
-                                            <img src='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg' alt='placeholder' />
-                                        )}
+                                            <div className="image-overlay">
+                                                <p>{movie.name}</p>
+                                            </div>
+                                        </div>
                                     </Link>
                                     <div className='year'>
                                         <p>{movie.year}</p>

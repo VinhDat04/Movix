@@ -11,7 +11,7 @@ const SeriesMovie = () => {
 
     const handleClick = async (pageNumber) => {
         try {
-            window.scrollTo({ top: 0 , behavior: 'smooth' });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             const tvShowLS = localStorage.getItem('tvShow');
             const paginationLS = localStorage.getItem('pagination');
 
@@ -25,7 +25,7 @@ const SeriesMovie = () => {
             console.log("TVShow:", tvShow);
             console.log("Pagination:", pagination);
 
-            localStorage.setItem("tvShow",JSON.stringify(tvShow));
+            localStorage.setItem("tvShow", JSON.stringify(tvShow));
             localStorage.setItem('pagination', JSON.stringify(pagination));
         } catch (error) {
             console.error('Error fetching movies:', error);
@@ -41,19 +41,29 @@ const SeriesMovie = () => {
             {tvShow ? (
                 <>
                     <div className='film_component'>
-                    <Filterform />
-                        <div className='category'>Tv Show</div>
+                        <Filterform />
+                        <div className='category' style={{ color: "#f89e00"}}>#Tv Show</div>
                         <div className="list">
                             {tvShow && tvShow.map(movie => (
                                 <div key={movie.id} className="movie">
-                                    <Link to={`/movie/detailsmovie/${movie.slug}`} ><img src={`https://img.phimapi.com/${movie.poster_url}`} alt={movie.title} /></Link>
+                                    <Link to={`/movie/detailsmovie/${movie.slug}`}>
+                                        <div className="image-container">
+                                            <img
+                                                src={`https://img.phimapi.com/${movie.poster_url}`}
+                                                alt={movie.title}
+                                                placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
+                                            />
+                                            <div className="image-overlay">
+                                                <p>{movie.name}</p>
+                                            </div>
+                                        </div>
+                                    </Link>
                                     <div className='year'>
                                         <p>{movie.year}</p>
                                     </div>
                                     <div className='title'>
-                                        <Link to={`/movie/detailsmovie/${movie.slug}`} >{movie.name}</Link>
+                                        <Link to={`/movie/detailsmovie/${movie.slug}`}>{movie.name}</Link>
                                     </div>
-
                                 </div>
                             ))}
                         </div>

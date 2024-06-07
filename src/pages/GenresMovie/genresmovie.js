@@ -57,12 +57,12 @@ const GenresMovie = () => {
                 <Loading />
             ) : (
                 <div className='film_component'>
-                <Filterform />
+                    <Filterform />
                     <div className='category'>
                         {genres.map(genre => (
                             genre.slug === slug && (
-                                <div key={genre.slug}>
-                                    {genre.name} | <span style={{ color: "rgb(139 92 246)", fontSize:"20px" }}>{filteredMovies.length} Kết quả</span>
+                                <div key={genre.slug} style={{ color: "#f89e00"}}>
+                                    #{genre.name} | <span style={{ color: "rgb(139 92 246)", fontSize: "20px" }}>{filteredMovies.length} Kết quả</span>
                                 </div>
                             )
                         ))}
@@ -72,11 +72,16 @@ const GenresMovie = () => {
                         {currentPageData.map(movie => (
                             <div key={movie.id} className="movie">
                                 <Link to={`/movie/detailsmovie/${movie.slug}`}>
-                                    <LazyLoadImage
-                                        src={`https://img.phimapi.com/${movie.poster_url}`}
-                                        alt={movie.title}
-                                        placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
-                                    />
+                                    <div className="image-container">
+                                        <LazyLoadImage
+                                            src={`https://img.phimapi.com/${movie.poster_url}`}
+                                            alt={movie.title}
+                                            placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
+                                        />
+                                        <div className="image-overlay">
+                                            <p>{movie.name}</p>
+                                        </div>
+                                    </div>
                                 </Link>
                                 <div className='year'>
                                     <p>{movie.year}</p>
