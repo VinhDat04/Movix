@@ -256,6 +256,10 @@
         color: #fff;
     }
 
+    .not_found_film p {
+        font-size: 2.8rem;
+    }
+
 }
 
 @media (max-width: 1300px) and (min-width: 961px) {
@@ -361,6 +365,10 @@
 
     .result {
         color: #fff;
+    }
+
+    .not_found_film p {
+        font-size: 2.8rem;
     }
 
 }
@@ -469,6 +477,10 @@
 
     .result {
         color: #fff;
+    }
+
+    .not_found_film p {
+        font-size: 2.2rem;
     }
 
 }
@@ -580,9 +592,16 @@
         font-size: 14px;
     }
 
+    .not_found_film p {
+        font-size: 2.2rem;
+    }
+
 }
 
 @media (max-width: 480px) {
+    .not_found_film p {
+        font-size: 1.7rem;
+    }
     .film_component {
         padding: 100px 5% 50px 5%;
         background-color: #04152d;
@@ -694,6 +713,10 @@
 @media (max-width: 320px) {
     .film_component .movie img {
         height: 180px;
+    }
+
+    .not_found_film p {
+        font-size: 1.7rem;
     }
 
 }
