@@ -1,7 +1,7 @@
 // listfavourite.js
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getFilterMovie, getPhimCapNhat } from '../../Api/api';  // Sửa đường dẫn tới tệp API của bạn nếu cần thiết
+import { getFilterMovie } from '../../Api/api';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import ReactPaginate from 'react-paginate';
 import Filterform from '../../components/FilterForm/filterform';
@@ -41,6 +41,12 @@ const ListFavourite = () => {
         localStorage.setItem('favourite', JSON.stringify(updatedFavourites));
     };
 
+    const handleRemoveAllFavourite = () => {
+        const clearAll =  "";
+        localStorage.removeItem('favourite')
+        setFavourite(clearAll);
+    }
+
     const filteredMovies = phimCapNhat?.filter(movie => favourite.includes(movie.slug)) || [];
     const offset = currentPage * itemsPerPage;
     const currentPageData = filteredMovies.slice(offset, offset + itemsPerPage);
@@ -50,8 +56,11 @@ const ListFavourite = () => {
             {filteredMovies.length > 0 ? (
                 <div className="film_component">
                     <Filterform />
-                    <div className='category' style={{ color: "#f89e00" }}>
-                        #Phim Yêu Thích | <span style={{ color: "rgb(139 92 246)" }}>{filteredMovies.length} Kết quả </span>
+                    <div style={{ justifyContent: "space-between", display: "flex" }}>
+                        <div className='category' style={{ color: "#f89e00" }}>
+                            #Phim Yêu Thích | <span style={{ color: "rgb(139 92 246)" }}>{filteredMovies.length} Kết quả </span>
+                        </div>
+                        <i onClick={()=>handleRemoveAllFavourite()} style={{ color: "#f89e00", display:"flex", cursor:"pointer", gap:"3px", fontSize:'1.3rem', alignItems:"center" }} class="fa-regular fa-trash-can"><h5 style={{fontFamily:'"Inter", sans-serif'}}>Clear</h5></i>
                     </div>
                     <div className='list'>
                         {currentPageData.map(movie => (

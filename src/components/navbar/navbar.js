@@ -120,7 +120,7 @@ const Navbar = () => {
                                 <div className={`dropdown_content ${dropdownOpen ? 'active' : ''}`}>
                                     <div className='genres_content'>
                                         {genres && genres.map(item => (
-                                            <Link style={menuGenres === item.slug ? { backgroundColor:"#fff", color:"#000" } : {}} onClick={() => handleClickGenres(item.slug)} key={item.slug} to={`/movie/genres/${item.slug}`}>{item.name}</Link>
+                                            <Link style={menuGenres === item.slug ? { backgroundColor: "#fff", color: "#000" } : {}} onClick={() => handleClickGenres(item.slug)} key={item.slug} to={`/movie/genres/${item.slug}`}>{item.name}</Link>
                                         ))}
                                     </div>
                                 </div>

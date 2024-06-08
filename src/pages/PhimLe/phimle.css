@@ -32,6 +32,8 @@
     z-index: 1;
     position: relative;
     transition: transform 0.5s;
+    object-fit: cover;
+
 }
 
 .film_component .movie img:hover {
