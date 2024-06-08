@@ -12,6 +12,10 @@ const FilterMovie = () => {
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage] = useState(15);
+    const [favourite, setFavourite] = useState(() => {
+        const storedFavourites = localStorage.getItem('favourite');
+        return storedFavourites ? JSON.parse(storedFavourites) : [];
+    });
 
     useEffect(() => {
         const fetchData = async () => {
@@ -50,6 +54,18 @@ const FilterMovie = () => {
     const offset = currentPage * itemsPerPage;
     const currentPageData = filteredMovies ? filteredMovies.slice(offset, offset + itemsPerPage) : [];
 
+    const handleClickFavourite = (slug) => {
+        let updatedFavourites;
+
+        if (favourite.includes(slug)) {
+            updatedFavourites = favourite.filter(item => item !== slug);
+        } else {
+            updatedFavourites = [...favourite, slug];
+        }
+
+        setFavourite(updatedFavourites);
+        localStorage.setItem('favourite', JSON.stringify(updatedFavourites));
+    };
     return (
         <div>
             {loading ? (
@@ -72,8 +88,22 @@ const FilterMovie = () => {
                                             placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
                                         />
                                     </Link>
-                                    <div className='year'>
-                                        <p>{movie.year}</p>
+                                    <div className='favourite'>
+                                        <div className='year'>
+                                            <p>{movie.year}</p>
+                                        </div>
+                                        {favourite.includes(movie.slug) ? (
+                                            <i
+                                                style={{ color: "#f89e00" }}
+                                                onClick={() => handleClickFavourite(movie.slug)}
+                                                className="fa-solid fa-bookmark"
+                                            ></i>
+                                        ) : (
+                                            <i
+                                                onClick={() => handleClickFavourite(movie.slug)}
+                                                className="fa-regular fa-bookmark"
+                                            ></i>
+                                        )}
                                     </div>
                                     <div className='title'>
                                         <Link to={`/movie/detailsmovie/${movie.slug}`}>{movie.name}</Link>

@@ -1,7 +1,7 @@
 // listfavourite.js
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getPhimCapNhat } from '../../Api/api';  // Sửa đường dẫn tới tệp API của bạn nếu cần thiết
+import { getFilterMovie, getPhimCapNhat } from '../../Api/api';  // Sửa đường dẫn tới tệp API của bạn nếu cần thiết
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import ReactPaginate from 'react-paginate';
 import Filterform from '../../components/FilterForm/filterform';
@@ -15,8 +15,8 @@ const ListFavourite = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { phimCapNhat } = await getPhimCapNhat();
-                setPhimCapNhat(phimCapNhat);
+                const { filterMovie } = await getFilterMovie();
+                setPhimCapNhat(filterMovie);
             } catch (error) {
                 console.error('Error fetching movie details:', error);
             }
@@ -59,7 +59,7 @@ const ListFavourite = () => {
                                 <Link to={`/movie/detailsmovie/${movie.slug}`}>
                                     <div className="image-container">
                                         <LazyLoadImage
-                                            src={movie.poster_url}
+                                            src={`https://img.phimapi.com/${movie.poster_url}`}
                                             alt={movie.title}
                                             placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
                                         />
@@ -68,16 +68,16 @@ const ListFavourite = () => {
                                         </div>
                                     </div>
                                 </Link>
-                                <div className='year'>
-                                    <p>{movie.year}</p>
+                                <div className='favourite'>
+                                    <div className='year'>
+                                        <p>{movie.year}</p>
+                                    </div>
+                                    <button onClick={() => handleRemoveFavourite(movie.slug)} className="remove-button">
+                                        <i style={{ color: "#f89e00" }} class="fa-solid fa-trash-can"></i>
+                                    </button>
                                 </div>
                                 <div className='title'>
                                     <Link to={`/movie/detailsmovie/${movie.slug}`}>{movie.name}</Link>
-                                </div>
-                                <div className='remove-favourite'>
-                                    <button onClick={() => handleRemoveFavourite(movie.slug)} className="remove-button">
-                                        Xóa khỏi yêu thích
-                                    </button>
                                 </div>
                             </div>
                         ))}
@@ -100,10 +100,10 @@ const ListFavourite = () => {
                     </div>
                 </div>
             ) : (
-                <div className='not_found'>
-                    <p>Không tìm thấy phim yêu thích!</p>
+                <div className='not_found_film'>
+                    <p>Bạn chưa có phim yêu thích!</p>
                     <button>
-                        <Link to={"/Movix"}>Về Trang Chủ</Link>
+                        <Link to={"/Movix"}>Tìm phim ngay</Link>
                     </button>
                 </div>
             )}

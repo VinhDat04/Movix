@@ -8,6 +8,10 @@ import Filterform from '../../components/FilterForm/filterform';
 const SeriesMovie = () => {
     const [tvShow, setTvShow] = useState(null);
     const [pagination, setPagination] = useState({ currentPage: 1, totalPages: 1 });
+    const [favourite, setFavourite] = useState(() => {
+        const storedFavourites = localStorage.getItem('favourite');
+        return storedFavourites ? JSON.parse(storedFavourites) : [];
+    });
 
     const handleClick = async (pageNumber) => {
         try {
@@ -36,13 +40,27 @@ const SeriesMovie = () => {
         handleClick(1);
     }, []);
 
+    const handleClickFavourite = (slug) => {
+        let updatedFavourites;
+
+        if (favourite.includes(slug)) {
+            updatedFavourites = favourite.filter(item => item !== slug);
+        } else {
+            updatedFavourites = [...favourite, slug];
+        }
+
+        setFavourite(updatedFavourites);
+        localStorage.setItem('favourite', JSON.stringify(updatedFavourites));
+    };
+
+
     return (
         <div>
             {tvShow ? (
                 <>
                     <div className='film_component'>
                         <Filterform />
-                        <div className='category' style={{ color: "#f89e00"}}>#Tv Show</div>
+                        <div className='category' style={{ color: "#f89e00" }}>#Tv Show</div>
                         <div className="list">
                             {tvShow && tvShow.map(movie => (
                                 <div key={movie.id} className="movie">
@@ -58,8 +76,22 @@ const SeriesMovie = () => {
                                             </div>
                                         </div>
                                     </Link>
-                                    <div className='year'>
-                                        <p>{movie.year}</p>
+                                    <div className='favourite'>
+                                        <div className='year'>
+                                            <p>{movie.year}</p>
+                                        </div>
+                                        {favourite.includes(movie.slug) ? (
+                                            <i
+                                                style={{ color: "#f89e00" }}
+                                                onClick={() => handleClickFavourite(movie.slug)}
+                                                className="fa-solid fa-bookmark"
+                                            ></i>
+                                        ) : (
+                                            <i
+                                                onClick={() => handleClickFavourite(movie.slug)}
+                                                className="fa-regular fa-bookmark"
+                                            ></i>
+                                        )}
                                     </div>
                                     <div className='title'>
                                         <Link to={`/movie/detailsmovie/${movie.slug}`}>{movie.name}</Link>

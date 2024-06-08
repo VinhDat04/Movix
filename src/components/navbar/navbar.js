@@ -62,6 +62,7 @@ const Navbar = () => {
     const handleClick = (category) => {
         setMenu(category);
         setMenuOpen(false);
+        window.scrollTo({ top: 0 });
     };
 
     const toggleMenu = () => {
@@ -124,7 +125,7 @@ const Navbar = () => {
                                     </div>
                                 </div>
                             </li>
-                            <li><Link to="/movie/list_favourite_movie">Yêu Thích</Link></li>
+                            <li><Link style={menu === "list_favourite_movie" ? { borderBottom: "3px solid rgb(139 92 246 )" } : {}} onClick={() => handleClick('list_favourite_movie')} to="/movie/list_favourite_movie">Yêu Thích</Link></li>
                             <li className='find' onClick={handleShowModal} style={{ color: "#fff", cursor: "pointer" }}><i className="fa-solid fa-magnifying-glass"></i></li>
                         </ul>
                     </div>

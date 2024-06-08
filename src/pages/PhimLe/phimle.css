@@ -121,6 +121,35 @@
     cursor: pointer;
 }
 
+.not_found_film{
+    background-color: #04152d;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: hidden;
+}
+
+.not_found_film p {
+    font-family: "Inter", sans-serif;
+    font-size: 2.6rem;
+    color: #fff;
+    padding: 0 5%;
+}
+
+.not_found_film button {
+    padding: 15px 25px;
+    background: linear-gradient(98.37deg, #f89e00 .99%, #da2f68 100%);
+    border-radius: 20em;
+}
+
+.not_found_film a {
+    color: #fff;
+    text-decoration: none;
+}
+
 @media (max-width: 1440px) and (min-width: 1301px) {
     .film_component {
         padding: 100px 10% 50px 10%;
