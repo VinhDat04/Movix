@@ -109,6 +109,18 @@
     color: #fff;
 }
 
+.favourite{
+    display: flex;
+    justify-content: space-between;
+}
+
+.favourite i{
+    font-size: 25px;
+    color: rgb(255, 255, 255,0.5);
+    padding: 10px 10px 0 10px;
+    cursor: pointer;
+}
+
 @media (max-width: 1440px) and (min-width: 1301px) {
     .film_component {
         padding: 100px 10% 50px 10%;

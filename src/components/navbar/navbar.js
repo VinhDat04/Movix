@@ -124,6 +124,7 @@ const Navbar = () => {
                                     </div>
                                 </div>
                             </li>
+                            <li><Link to="/movie/list_favourite_movie">Yêu Thích</Link></li>
                             <li className='find' onClick={handleShowModal} style={{ color: "#fff", cursor: "pointer" }}><i className="fa-solid fa-magnifying-glass"></i></li>
                         </ul>
                     </div>

@@ -12,6 +12,7 @@ import { Link, Route, Routes } from 'react-router-dom';
 import GenresMovie from '../pages/GenresMovie/genresmovie';
 import FilterMovie from '../pages/FilterMovie/filtermovie';
 import Info from '../pages/Info/info';
+import ListFavourite from '../pages/FavouriteMovie/favouritemovie'
 
 
 const Router = () => {
@@ -31,6 +32,7 @@ const Router = () => {
                 <Route path="/movie/genres/:slug" element={<GenresMovie />} />
                 <Route path="/movie/filter" element={<FilterMovie />} />
                 <Route path="/info/:slug" element={<Info />} />
+                <Route path="/movie/list_favourite_movie" element={<ListFavourite />} />
                 {/* Neu khong tim thay route */}
                 <Route path="*" element={
                     <div className='not_found'>
