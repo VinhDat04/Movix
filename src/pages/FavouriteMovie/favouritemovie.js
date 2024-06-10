@@ -1,4 +1,3 @@
-// listfavourite.js
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getFilterMovie } from '../../Api/api';
@@ -11,6 +10,7 @@ const ListFavourite = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [itemsPerPage] = useState(10);
     const [phimCapNhat, setPhimCapNhat] = useState(null);
+    const [filteredMovies, setFilteredMovies] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -28,7 +28,18 @@ const ListFavourite = () => {
         if (storedFavourites) {
             setFavourite(JSON.parse(storedFavourites));
         }
-    }, []);
+
+        if (phimCapNhat && favourite.length > 0) {
+            const filtered = phimCapNhat.filter(movie => favourite.includes(movie.slug));
+            setFilteredMovies(filtered);
+            localStorage.setItem('filteredMovies', JSON.stringify(filtered));
+        }
+
+        const storedFilteredMovies = localStorage.getItem('filteredMovies');
+        if (storedFilteredMovies) {
+            setFilteredMovies(JSON.parse(storedFilteredMovies));
+        }
+    }, [phimCapNhat, favourite]);
 
     const handlePageClick = (data) => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -42,12 +53,10 @@ const ListFavourite = () => {
     };
 
     const handleRemoveAllFavourite = () => {
-        const clearAll =  "";
-        localStorage.removeItem('favourite')
-        setFavourite(clearAll);
-    }
+        localStorage.removeItem('favourite');
+        setFavourite([]);
+    };
 
-    const filteredMovies = phimCapNhat?.filter(movie => favourite.includes(movie.slug)) || [];
     const offset = currentPage * itemsPerPage;
     const currentPageData = filteredMovies.slice(offset, offset + itemsPerPage);
 
@@ -60,7 +69,9 @@ const ListFavourite = () => {
                         <div className='category' style={{ color: "#f89e00" }}>
                             #Phim Yêu Thích | <span style={{ color: "rgb(139 92 246)" }}>{filteredMovies.length} Kết quả </span>
                         </div>
-                        <i onClick={()=>handleRemoveAllFavourite()} style={{ color: "#f89e00", display:"flex", cursor:"pointer", gap:"3px", fontSize:'1.3rem', alignItems:"center" }} class="fa-regular fa-trash-can"><h5 style={{fontFamily:'"Inter", sans-serif'}}>Clear</h5></i>
+                        <i onClick={handleRemoveAllFavourite} style={{ color: "#f89e00", display: "flex", cursor: "pointer", gap: "3px", fontSize: '1.3rem', alignItems: "center" }} className="fa-regular fa-trash-can">
+                            <h5 style={{ fontFamily: '"Inter", sans-serif' }}>Clear</h5>
+                        </i>
                     </div>
                     <div className='list'>
                         {currentPageData.map(movie => (
@@ -82,7 +93,7 @@ const ListFavourite = () => {
                                         <p>{movie.year}</p>
                                     </div>
                                     <button onClick={() => handleRemoveFavourite(movie.slug)} className="remove-button">
-                                        <i style={{ color: "#f89e00" }} class="fa-solid fa-trash-can"></i>
+                                        <i style={{ color: "#f89e00" }} className="fa-solid fa-trash-can"></i>
                                     </button>
                                 </div>
                                 <div className='title'>
