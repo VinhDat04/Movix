@@ -147,7 +147,7 @@ const ShowHomePage = () => {
                                         <div className="image-container">
                                             <img
                                                 src={`${movie.poster_url}`}
-                                                alt={`${movie.title}`}
+                                                alt="hinh-anh"
                                                 placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
                                             />
                                             <div className="image-overlay">
@@ -191,7 +191,7 @@ const ShowHomePage = () => {
                                         <div className="image-container">
                                             <img
                                                 src={`https://img.phimapi.com/${movie.poster_url}`}
-                                                alt={`${movie.title}`}
+                                                alt="hinh-anh"
                                                 placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
                                             />
                                             <div className="image-overlay">
@@ -235,7 +235,7 @@ const ShowHomePage = () => {
                                         <div className="image-container">
                                             <img
                                                 src={`https://img.phimapi.com/${movie.poster_url}`}
-                                                alt={`${movie.title}`}
+                                                alt="hinh-anh"
                                                 placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
                                             />
                                             <div className="image-overlay">
@@ -279,7 +279,7 @@ const ShowHomePage = () => {
                                         <div className="image-container">
                                             <img
                                                 src={`https://img.phimapi.com/${movie.poster_url}`}
-                                                alt={`${movie.title}`}
+                                                alt="hinh-anh"
                                                 placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
                                             />
                                             <div className="image-overlay">
@@ -323,7 +323,7 @@ const ShowHomePage = () => {
                                         <div className="image-container">
                                             <img
                                                 src={`https://img.phimapi.com/${movie.poster_url}`}
-                                                alt={`${movie.title}`}
+                                                alt="hinh-anh"
                                                 placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
                                             />
                                             <div className="image-overlay">
