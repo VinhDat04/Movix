@@ -11,6 +11,10 @@ const DetailsMovie = () => {
     const [details, setDetails] = useState(null);
     const [phimCapNhat, setPhimCapNhat] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [favourite, setFavourite] = useState(() => {
+        const storedFavourites = localStorage.getItem('favourite');
+        return storedFavourites ? JSON.parse(storedFavourites) : [];
+    });
 
     useEffect(() => {
         const fetchData = async () => {
@@ -95,6 +99,19 @@ const DetailsMovie = () => {
         return <Loading />;
     }
 
+    const handleClickFavourite = (slug) => {
+        let updatedFavourites;
+
+        if (favourite.includes(slug)) {
+            updatedFavourites = favourite.filter(item => item !== slug);
+        } else {
+            updatedFavourites = [...favourite, slug];
+        }
+
+        setFavourite(updatedFavourites);
+        localStorage.setItem('favourite', JSON.stringify(updatedFavourites));
+    };
+
     return (
         <>
             {similar.length > 0 && phimCapNhat ? (
@@ -128,8 +145,22 @@ const DetailsMovie = () => {
                                                         </div>
                                                     </div>
                                                 </Link>
-                                                <div className='year'>
-                                                    <p>{movie.year}</p>
+                                                <div className='favourite'>
+                                                    <div className='year'>
+                                                        <p>{movie.year}</p>
+                                                    </div>
+                                                    {favourite.includes(movie.slug) ? (
+                                                        <i
+                                                            style={{ color: "#f89e00" }}
+                                                            onClick={() => handleClickFavourite(movie.slug)}
+                                                            className="fa-solid fa-bookmark"
+                                                        ></i>
+                                                    ) : (
+                                                        <i
+                                                            onClick={() => handleClickFavourite(movie.slug)}
+                                                            className="fa-regular fa-bookmark"
+                                                        ></i>
+                                                    )}
                                                 </div>
                                                 <div className='title'>
                                                     <Link to={`/movie/detailsmovie/${movie.slug}`}>{movie.name}</Link>
@@ -163,8 +194,22 @@ const DetailsMovie = () => {
                                             </div>
                                         </div>
                                     </Link>
-                                    <div className='year'>
-                                        <p>{movie.year}</p>
+                                    <div className='favourite'>
+                                        <div className='year'>
+                                            <p>{movie.year}</p>
+                                        </div>
+                                        {favourite.includes(movie.slug) ? (
+                                            <i
+                                                style={{ color: "#f89e00" }}
+                                                onClick={() => handleClickFavourite(movie.slug)}
+                                                className="fa-solid fa-bookmark"
+                                            ></i>
+                                        ) : (
+                                            <i
+                                                onClick={() => handleClickFavourite(movie.slug)}
+                                                className="fa-regular fa-bookmark"
+                                            ></i>
+                                        )}
                                     </div>
                                     <div className='title'>
                                         <Link to={`/movie/detailsmovie/${movie.slug}`}>{movie.name}</Link>
