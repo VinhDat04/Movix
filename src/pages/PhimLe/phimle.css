@@ -111,19 +111,19 @@
     color: #fff;
 }
 
-.favourite{
+.favourite {
     display: flex;
     justify-content: space-between;
 }
 
-.favourite i{
+.favourite i {
     font-size: 25px;
-    color: rgb(255, 255, 255,0.5);
+    color: rgb(255, 255, 255, 0.5);
     padding: 10px 10px 0 10px;
     cursor: pointer;
 }
 
-.not_found_film{
+.not_found_film {
     background-color: #04152d;
     height: 100vh;
     align-items: center;
@@ -605,6 +605,7 @@
     .not_found_film p {
         font-size: 1.7rem;
     }
+
     .film_component {
         padding: 100px 5% 50px 5%;
         background-color: #04152d;

@@ -82,11 +82,16 @@ const FilterMovie = () => {
                             {currentPageData.map((movie) => (
                                 <div key={movie.id} className="movie">
                                     <Link to={`/movie/detailsmovie/${movie.slug}`}>
-                                        <LazyLoadImage
-                                            src={`https://img.phimapi.com/${movie.poster_url}`}
-                                            alt={movie.title}
-                                            placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
-                                        />
+                                        <div className="image-container">
+                                            <img
+                                                src={`https://img.phimapi.com/${movie.poster_url}`}
+                                                alt={movie.title}
+                                                placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'
+                                            />
+                                            <div className="image-overlay">
+                                                <p>{movie.name}</p>
+                                            </div>
+                                        </div>
                                     </Link>
                                     <div className='favourite'>
                                         <div className='year'>
