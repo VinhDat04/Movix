@@ -5,6 +5,7 @@ import { getFilterMovie } from '../../Api/api';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import ReactPaginate from 'react-paginate';
 import Filterform from '../../components/FilterForm/filterform';
+import Load from '../../components/Loading/loading';
 
 const ListFavourite = () => {
     const [favourite, setFavourite] = useState([]);
@@ -12,11 +13,24 @@ const ListFavourite = () => {
     const [itemsPerPage] = useState(10);
     const [phimCapNhat, setPhimCapNhat] = useState(null);
 
+
+
     useEffect(() => {
         const fetchData = async () => {
             try {
+                const favouritedLS = localStorage.getItem("favourited");
+                const phimCapNhatLS = localStorage.getItem('phimCapNhat');
+                if (favouritedLS && phimCapNhatLS) {
+                    setFavourite(JSON.parse(favouritedLS));
+                    setPhimCapNhat(JSON.parse(phimCapNhatLS));
+                }
+
                 const { filterMovie } = await getFilterMovie();
                 setPhimCapNhat(filterMovie);
+                localStorage.setItem('favourited', JSON.stringify(filteredMovies));
+                // localStorage.setItem('phimCapNhat1', JSON.stringify(phimCapNhat));
+
+
             } catch (error) {
                 console.error('Error fetching movie details:', error);
             }
@@ -42,7 +56,7 @@ const ListFavourite = () => {
     };
 
     const handleRemoveAllFavourite = () => {
-        const clearAll =  "";
+        const clearAll = "";
         localStorage.removeItem('favourite')
         setFavourite(clearAll);
     }
@@ -51,16 +65,18 @@ const ListFavourite = () => {
     const offset = currentPage * itemsPerPage;
     const currentPageData = filteredMovies.slice(offset, offset + itemsPerPage);
 
+
+
     return (
         <div>
-            {filteredMovies.length > 0 ? (
+            {filteredMovies.length > 0 || phimCapNhat    ?  (
                 <div className="film_component">
                     <Filterform />
                     <div style={{ justifyContent: "space-between", display: "flex" }}>
                         <div className='category' style={{ color: "#f89e00" }}>
                             #Phim Yêu Thích | <span style={{ color: "rgb(139 92 246)" }}>{filteredMovies.length} Kết quả </span>
                         </div>
-                        <i onClick={()=>handleRemoveAllFavourite()} style={{ color: "#f89e00", display:"flex", cursor:"pointer", gap:"3px", fontSize:'1.3rem', alignItems:"center" }} class="fa-regular fa-trash-can"><h5 style={{fontFamily:'"Inter", sans-serif'}}>Clear</h5></i>
+                        <i onClick={() => handleRemoveAllFavourite()} style={{ color: "#f89e00", display: "flex", cursor: "pointer", gap: "3px", fontSize: '1.3rem', alignItems: "center" }} class="fa-regular fa-trash-can"><h5 style={{ fontFamily: '"Inter", sans-serif' }}>Clear</h5></i>
                     </div>
                     <div className='list'>
                         {currentPageData.map(movie => (
@@ -109,12 +125,7 @@ const ListFavourite = () => {
                     </div>
                 </div>
             ) : (
-                <div className='not_found_film'>
-                    <p>Bạn chưa có phim yêu thích!</p>
-                    <button>
-                        <Link to={"/Movix"}>Tìm phim ngay</Link>
-                    </button>
-                </div>
+                <Load />
             )}
         </div>
     );
