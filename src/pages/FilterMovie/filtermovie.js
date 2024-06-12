@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getFilterMovie } from '../../Api/api';
 import Loading from '../../components/Loading/loading';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 import ReactPaginate from 'react-paginate';
 import Filterform from '../../components/FilterForm/filterform';
 

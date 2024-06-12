@@ -22,13 +22,30 @@ const DetailsMovie = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                const detailsLS = localStorage.getItem(`details_${slug}`);
+                const categoryLS = localStorage.getItem(`category_${slug}`);
+                const countryLS = localStorage.getItem(`country_${slug}`);
+                const episodesLS = localStorage.getItem(`episodes_${slug}`);
 
-                const { details, category, country, episodes } = await getDetailMovie(slug);
-                setDetails(details);
-                setCategory(category);
-                setCountry(country);
-                setEpisodes(episodes);
-                setCommentUrl(`https://vinhdat04.github.io/movie/detailsmovie/${slug}`);
+                if (detailsLS && categoryLS && countryLS && episodesLS) {
+                    setDetails(JSON.parse(detailsLS));
+                    setCategory(JSON.parse(categoryLS));
+                    setCountry(JSON.parse(countryLS));
+                    setEpisodes(JSON.parse(episodesLS));
+                    setCommentUrl(`https://vinhdat04.github.io/movie/detailsmovie/${slug}`);
+                } else {
+                    const { details, category, country, episodes } = await getDetailMovie(slug);
+                    setDetails(details);
+                    setCategory(category);
+                    setCountry(country);
+                    setEpisodes(episodes);
+                    setCommentUrl(`https://vinhdat04.github.io/movie/detailsmovie/${slug}`);
+
+                    localStorage.setItem(`details_${slug}`, JSON.stringify(details));
+                    localStorage.setItem(`category_${slug}`, JSON.stringify(category));
+                    localStorage.setItem(`country_${slug}`, JSON.stringify(country));
+                    localStorage.setItem(`episodes_${slug}`, JSON.stringify(episodes));
+                }
 
                 if (window.FB) {
                     window.FB.XFBML.parse();
