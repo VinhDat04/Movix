@@ -5,6 +5,7 @@ import Loading from '../../components/Loading/loading';
 
 import ReactPaginate from 'react-paginate';
 import Filterform from '../../components/FilterForm/filterform';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 
 const FilterMovie = () => {
@@ -83,7 +84,7 @@ const FilterMovie = () => {
                                 <div key={movie.id} className="movie">
                                     <Link to={`/movie/detailsmovie/${movie.slug}`}>
                                         <div className="image-container">
-                                            <img
+                                            <LazyLoadImage
                                                 src={`https://img.phimapi.com/${movie.poster_url}`}
                                                 alt={movie.title}
                                                 placeholderSrc='https://movix-taupe.vercel.app/assets/movix-logo-d720c325.svg'

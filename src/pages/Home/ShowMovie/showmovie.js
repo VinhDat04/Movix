@@ -138,6 +138,8 @@ const ShowHomePage = () => {
             {phimCapNhat && phimBo && phimLe && tvShow && hoatHinh ? (
                 <>
                     <Banner />
+                    <Filterform />
+
                     <div className="show_series">
                         <div className='category'><Link to={"/movie/phim_moi_cap_nhat"} style={{ color: "#f89e00", textDecoration: "none" }}>#Phim mới cập nhật</Link></div>
                         <Slider {...settings}>
@@ -358,7 +360,6 @@ const ShowHomePage = () => {
                             </div>
                         </Slider>
                     </div>
-                    <Filterform />
                 </>
             ) : (
                 <div className='loading'>
