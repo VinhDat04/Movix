@@ -7,6 +7,23 @@
     justify-content: center;
 }
 
+.filter_form select::-webkit-scrollbar {
+    width: 5px;
+}
+
+.filter_form select::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.filter_form select::-webkit-scrollbar-thumb {
+    background: rgb(248, 158, 0);
+    ;
+}
+
+.filter_form select::-webkit-scrollbar-thumb:hover {
+    background: rgb(248, 158, 0);
+}
+
 .filter_form select {
     border: 1px solid rgb(139 92 246);
     /* padding: 10px 20px; */

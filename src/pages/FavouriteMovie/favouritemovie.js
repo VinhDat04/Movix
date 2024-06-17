@@ -69,14 +69,14 @@ const ListFavourite = () => {
 
     return (
         <div>
-            {filteredMovies.length > 0 || phimCapNhat    ?  (
+            {filteredMovies.length > 0 || phimCapNhat ? (
                 <div className="film_component">
                     <Filterform />
                     <div style={{ justifyContent: "space-between", display: "flex" }}>
                         <div className='category' style={{ color: "#f89e00" }}>
                             #Phim Yêu Thích | <span style={{ color: "rgb(139 92 246)" }}>{filteredMovies.length} Kết quả </span>
                         </div>
-                        <i onClick={() => handleRemoveAllFavourite()} style={{ color: "#f89e00", display: "flex", cursor: "pointer", gap: "3px", fontSize: '1.3rem', alignItems: "center" }} class="fa-regular fa-trash-can"><h5 style={{ fontFamily: '"Inter", sans-serif' }}>Clear</h5></i>
+                        <i onClick={() => handleRemoveAllFavourite()} style={{ color: "#f89e00", display: "flex", cursor: "pointer", gap: "3px", fontSize: '1.2rem', alignItems: "center" }} class="fa-regular fa-trash-can"><h5 style={{ fontFamily: '"Inter", sans-serif' }}>Clear</h5></i>
                     </div>
                     <div className='list'>
                         {currentPageData.map(movie => (
@@ -120,7 +120,7 @@ const ListFavourite = () => {
                             activeClassName={"active"}
                         />
                         <div className='result'>
-                            <p>Trang {currentPage + 1}/{Math.ceil(filteredMovies.length / itemsPerPage)} | Tổng {filteredMovies.length} Kết quả</p>
+                            <p>Trang {currentPage + 1}/{Math.ceil(filteredMovies.length / itemsPerPage) === 0 ? 1 : Math.ceil(filteredMovies.length / itemsPerPage)} | Tổng {filteredMovies.length} Kết quả</p>
                         </div>
                     </div>
                 </div>
