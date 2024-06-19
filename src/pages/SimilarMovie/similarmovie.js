@@ -60,7 +60,7 @@ const DetailsMovie = () => {
         dots: false,
         infinite: false,
         speed: 1000,
-        slidesToShow: 6,
+        slidesToShow: 7,
         slidesToScroll: 4,
         responsive: [
             {
