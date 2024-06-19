@@ -31,7 +31,7 @@ const ShowHomePage = () => {
         dots: false,
         infinite: false,
         speed: 1000,
-        slidesToShow: 5,
+        slidesToShow: 6,
         slidesToScroll: 4,
         responsive: [
             {

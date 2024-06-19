@@ -25,7 +25,7 @@ const Search = () => {
                 const { timkiem, titlePage } = await getSearch(keyword);
                 setTimKiem(timkiem);
                 setTitlePage(titlePage);
-                console.log("sssssssssss", titlePage);
+                console.log("Tiêu đề danh mục:", titlePage);
                 console.log("Kết quả tìm kiếm:", timkiem);
             } catch (error) {
                 console.error('Error fetching movie details:', error);
