@@ -35,6 +35,7 @@ export const getDetailMovie = async (slug) => {
     try {
         const data = await fetchWithCache(`/phim/${slug}`, {});
         return {
+            status: data.status,
             details: data.movie,
             category: data.movie.category,
             country: data.movie.country,

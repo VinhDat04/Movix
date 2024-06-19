@@ -9,6 +9,7 @@ import SimilarMovie from "../SimilarMovie/similarmovie";
 
 const DetailsMovie = () => {
     const { slug } = useParams();
+    const [status, setStatus] = useState(null);
     const [details, setDetails] = useState(null);
     const [category, setCategory] = useState(null);
     const [country, setCountry] = useState(null);
@@ -23,11 +24,13 @@ const DetailsMovie = () => {
         const fetchData = async () => {
             try {
 
-                const { details, category, country, episodes } = await getDetailMovie(slug);
+                const { details, category, country, episodes, status } = await getDetailMovie(slug);
                 setDetails(details);
                 setCategory(category);
                 setCountry(country);
                 setEpisodes(episodes);
+                setStatus(status);
+                console.log("Status", status);
                 setCommentUrl(`https://filmhd.vercel.app/movie/detailsmovie/${slug}`);
 
                 if (window.FB) {
@@ -36,7 +39,7 @@ const DetailsMovie = () => {
             } catch (error) {
                 console.error('Error fetching movie details:', error);
                 if (error) {
-                    const error = "Hiện không có dữ liệu phim!";
+                    const error = "Hiện chưa có dữ liệu phim!";
                     setError(error);
                 }
             }
@@ -79,9 +82,9 @@ const DetailsMovie = () => {
 
     return (
         <div>
-            {error ? (
+            {status === false ? (
                 <div className='not_found'>
-                    <p>{error}</p>
+                    <p>Hiện chưa có dữ liệu phim!</p>
                     <button>
                         <Link to={"/Movix"}>Về Trang Chủ</Link>
                     </button>
