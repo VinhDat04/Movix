@@ -44,7 +44,7 @@ const Filterform = () => {
         localStorage.setItem('countryFilter', selectedCountry);
         localStorage.setItem('yearFilter', year);
         localStorage.setItem('typeFilter', type);
-        window.scrollTo({ top: 0});
+        window.scrollTo({ top: 0 });
 
         navigate("/movie/filter");
     };
