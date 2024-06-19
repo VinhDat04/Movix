@@ -64,6 +64,13 @@ const DetailsMovie = () => {
         slidesToScroll: 4,
         responsive: [
             {
+                breakpoint: 1690,
+                settings: {
+                    slidesToShow: 5,
+                    slidesToScroll: 4,
+                },
+            },
+            {
                 breakpoint: 1024,
                 settings: {
                     slidesToShow: 4,
