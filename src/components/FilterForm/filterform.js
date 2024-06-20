@@ -103,7 +103,7 @@ const Filterform = () => {
                 ))}
             </select>
 
-            <button type='submit'>Lọc <i className="fa-solid fa-magnifying-glass"></i></button>
+            <button className='button_filter' type='submit'><i className="fa-solid fa-magnifying-glass"></i></button>
         </form>
     );
 };
