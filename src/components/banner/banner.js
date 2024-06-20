@@ -56,7 +56,7 @@ const Banner = () => {
                         >
                             <img src={`${item.thumb_url}`} style={{ width: '100%', height: '100%' }} alt={`${item.thumb_url}`} />
                             <div className="text">
-                                <h1>welcome .</h1>
+                                <h1>welcome.</h1>
                                 <p>Millions of movies, TV shows and people to discover. Explore now.</p>
                             </div>
                             <form onSubmit={handleSubmit}>

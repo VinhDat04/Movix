@@ -716,6 +716,8 @@ body {
         border-radius: 10px;
     }
 
+  
+
     .content_item1 h5 {
         font-family: "Inter", sans-serif;
         color: #fff;
@@ -740,6 +742,7 @@ body {
         margin: 0 5px 0 0;
         border-radius: 5px;
         font-size: 10px;
+      
     }
 
     .content_item1 iframe {
@@ -941,11 +944,18 @@ body {
     .content_item1 span {
         font-family: "Inter", sans-serif;
         padding: 1px 5px;
-        font-size: 12px;
+        font-size: 11px;
         background-color: #da2f68;
         color: #fff;
         margin: 0 5px 0 0;
         border-radius: 5px;
+       
+    }
+    
+    .flex_category{
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 5px;
     }
 
     .trailer_container {
