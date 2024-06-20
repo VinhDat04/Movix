@@ -672,12 +672,12 @@
         align-items: center;
         justify-content: center;
         width: 100%;
-        padding: 30px 8%;
+        padding: 30px 7%;
     }
 
     .search input {
         width: 100%;
-        padding: 10px 20px;
+        padding: 10px 0 10px 15px;
         border: none;
         background-color: #fff;
         border-radius: 20em 0 0 20em;

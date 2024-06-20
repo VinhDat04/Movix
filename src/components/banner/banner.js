@@ -61,7 +61,7 @@ const Banner = () => {
                             </div>
                             <form onSubmit={handleSubmit}>
                                 <div className='search'>
-                                    <input required value={keyword} onChange={(e) => setKeyword(e.target.value)} placeholder='Tìm kiếm phim hoặc tv show...' />
+                                    <input required value={keyword} onChange={(e) => setKeyword(e.target.value)} size={5} placeholder='Tìm kiếm phim hoặc tv show...' />
                                     <button type='submit'>Tìm Kiếm</button>
                                 </div>
                             </form>
