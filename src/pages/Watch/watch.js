@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getDetailMovie } from '../../Api/api';
 import Loading from '../../components/Loading/loading';
 import Hls from 'hls.js';
@@ -74,8 +74,18 @@ const DetailsMovie = () => {
                         </video>
                     </div>
                     <div className='episodes'>
+                        <div className='info_film'>
+                            <div className='content_info'>
+                                <h1>{details.name}</h1>
+                                <h6>{details.quality}</h6>
+                                <h6>{details.lang}</h6>
+                            </div>
+                            <div className='back_details'>
+                                <Link to={`/movie/detailsmovie/${details.slug}`}><i class="fa-solid fa-chevron-left"></i>Chi tiết phim</Link>
+                            </div>
+                        </div>
                         <div className='title'>
-                            <h5>Danh sách phim</h5>
+                            <h5>#Danh sách phim</h5>
                         </div>
                         {episodes.length > 0 ? episodes.map((server, index) => (
                             <div key={index} className='info_item'>
@@ -87,8 +97,8 @@ const DetailsMovie = () => {
                                                 background: activeLink === item.link_m3u8
                                                     ? "#359000"
                                                     : watchedEpisodes.has(item.link_m3u8)
-                                                    ? "#444"
-                                                    : "linear-gradient(98.37deg, #f89e00 .99%, #da2f68 100%)"
+                                                        ? "#444"
+                                                        : "linear-gradient(98.37deg, #f89e00 .99%, #da2f68 100%)"
                                             }}
                                         >
                                             {item.name}
