@@ -68,7 +68,11 @@ const DetailsMovie = () => {
         <div>
             {details ? (
                 <div className='details_container'>
+                   
                     <div style={{ backgroundImage: `url('${details.thumb_url}')` }} className='video'>
+                    <div className='back_details'>
+                        <Link to={`/movie/detailsmovie/${details.slug}`}><i class="fa-solid fa-chevron-left"></i><p>Chi tiết phim</p></Link>
+                    </div>
                         <video ref={videoRef} width="100%" height="auto" controls>
                             Your browser does not support the video tag.
                         </video>
@@ -77,12 +81,12 @@ const DetailsMovie = () => {
                         <div className='info_film'>
                             <div className='content_info'>
                                 <h1>{details.name}</h1>
-                                <h6>{details.quality}</h6>
-                                <h6>{details.lang}</h6>
+                                <div className='quality_language'>
+                                    <h6>{details.quality}</h6>
+                                    <h6>{details.lang}</h6>
+                                </div>
                             </div>
-                            <div className='back_details'>
-                                <Link to={`/movie/detailsmovie/${details.slug}`}><i class="fa-solid fa-chevron-left"></i>Chi tiết phim</Link>
-                            </div>
+
                         </div>
                         <div className='title'>
                             <h5>#Danh sách phim</h5>
